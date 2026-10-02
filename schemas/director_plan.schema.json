@@ -1,0 +1,424 @@
+{
+  "$defs": {
+    "Character": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "voice_role": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Voice Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "voice_role"
+      ],
+      "title": "Character",
+      "type": "object"
+    },
+    "Concept": {
+      "additionalProperties": false,
+      "properties": {
+        "logline": {
+          "minLength": 1,
+          "title": "Logline",
+          "type": "string"
+        },
+        "narrative_structure": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Narrative Structure",
+          "type": "array"
+        },
+        "story_format": {
+          "minLength": 1,
+          "title": "Story Format",
+          "type": "string"
+        }
+      },
+      "required": [
+        "logline",
+        "story_format",
+        "narrative_structure"
+      ],
+      "title": "Concept",
+      "type": "object"
+    },
+    "Cta": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "type": {
+          "default": "none",
+          "enum": [
+            "none",
+            "soft",
+            "explicit"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "title": "Cta",
+      "type": "object"
+    },
+    "Ending": {
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        },
+        "type": {
+          "minLength": 1,
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Ending",
+      "type": "object"
+    },
+    "ExperimentPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_target_s": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Target S",
+          "type": "number"
+        },
+        "experiment_id": {
+          "minLength": 1,
+          "title": "Experiment Id",
+          "type": "string"
+        },
+        "format": {
+          "minLength": 1,
+          "title": "Format",
+          "type": "string"
+        },
+        "hook_type": {
+          "minLength": 1,
+          "title": "Hook Type",
+          "type": "string"
+        },
+        "story_format": {
+          "minLength": 1,
+          "title": "Story Format",
+          "type": "string"
+        },
+        "visual_style": {
+          "minLength": 1,
+          "title": "Visual Style",
+          "type": "string"
+        }
+      },
+      "required": [
+        "experiment_id",
+        "format",
+        "hook_type",
+        "story_format",
+        "duration_target_s",
+        "visual_style"
+      ],
+      "title": "ExperimentPlan",
+      "type": "object"
+    },
+    "Hook": {
+      "additionalProperties": false,
+      "properties": {
+        "hook_type": {
+          "minLength": 1,
+          "title": "Hook Type",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "hook_type"
+      ],
+      "title": "Hook",
+      "type": "object"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "narration",
+            "dialogue"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "voice_role": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Voice Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "voice_role",
+        "text"
+      ],
+      "title": "Line",
+      "type": "object"
+    },
+    "PublishingMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "category_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Category Id"
+        },
+        "contains_synthetic_media": {
+          "default": true,
+          "title": "Contains Synthetic Media",
+          "type": "boolean"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "made_for_kids": {
+          "default": false,
+          "title": "Made For Kids",
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        }
+      },
+      "title": "PublishingMetadata",
+      "type": "object"
+    },
+    "Scene": {
+      "additionalProperties": false,
+      "properties": {
+        "character_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Character Ids",
+          "type": "array"
+        },
+        "duration_hint_s": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Duration Hint S"
+        },
+        "image_prompt": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Image Prompt",
+          "type": "string"
+        },
+        "index": {
+          "minimum": 1,
+          "title": "Index",
+          "type": "integer"
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/$defs/Line"
+          },
+          "minItems": 1,
+          "title": "Lines",
+          "type": "array"
+        },
+        "sound_intent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sound Intent"
+        },
+        "vfx_intent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vfx Intent"
+        },
+        "visual_intent": {
+          "minLength": 1,
+          "title": "Visual Intent",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "visual_intent",
+        "image_prompt",
+        "lines"
+      ],
+      "title": "Scene",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "channel": {
+      "pattern": "^[a-z][a-z0-9_]{0,31}$",
+      "title": "Channel",
+      "type": "string"
+    },
+    "characters": {
+      "items": {
+        "$ref": "#/$defs/Character"
+      },
+      "title": "Characters",
+      "type": "array"
+    },
+    "concept": {
+      "$ref": "#/$defs/Concept"
+    },
+    "cta": {
+      "$ref": "#/$defs/Cta"
+    },
+    "ending": {
+      "$ref": "#/$defs/Ending"
+    },
+    "experiment": {
+      "$ref": "#/$defs/ExperimentPlan"
+    },
+    "format": {
+      "minLength": 1,
+      "title": "Format",
+      "type": "string"
+    },
+    "hook": {
+      "$ref": "#/$defs/Hook"
+    },
+    "job_id": {
+      "pattern": "^JOB-\\d{8}-[a-z][a-z0-9_]{0,31}-\\d+$",
+      "title": "Job Id",
+      "type": "string"
+    },
+    "publishing": {
+      "$ref": "#/$defs/PublishingMetadata"
+    },
+    "scenes": {
+      "items": {
+        "$ref": "#/$defs/Scene"
+      },
+      "minItems": 1,
+      "title": "Scenes",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Target Duration S",
+      "type": "number"
+    },
+    "title": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "channel",
+    "title",
+    "format",
+    "target_duration_s",
+    "concept",
+    "hook",
+    "scenes",
+    "ending",
+    "experiment"
+  ],
+  "title": "DirectorPlan",
+  "type": "object"
+}
